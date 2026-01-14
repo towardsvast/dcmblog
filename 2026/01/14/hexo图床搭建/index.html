@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="/dcmblog/null">
     <link rel="icon" type="image/png" href="/dcmblog/null">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-    <title>Maven依赖冲突解决 - HaoMiao</title>
+    <title>hexo图床搭建 - HaoMiao</title>
     
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     
@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="Bijun Xiang">
     <meta name="keywords" content="">
-    <meta property="og:title" content="Maven依赖冲突解决"/>
+    <meta property="og:title" content="hexo图床搭建"/>
     <style>
 
 
@@ -457,7 +457,7 @@ header .header__right .dropdown-menus .dropdown-menu {
 <article class="page">
 <div id="post-meta-m">
     <div class="post-meta" id="post-meta">
-  <h3>Maven依赖冲突解决</h3>
+  <h3>hexo图床搭建</h3>
     
       <span class="post-meta-label">
         Bijun Xiang
@@ -466,8 +466,8 @@ header .header__right .dropdown-menus .dropdown-menu {
     
       <span class="post-meta-label">
         <span class="p-dot"></span>
-        <time datetime="2026-01-13 23:11" pubdate>
-          2026-01-13
+        <time datetime="2026-01-14 22:10" pubdate>
+          2026-01-14
         </time>
       </span>
     
@@ -475,7 +475,7 @@ header .header__right .dropdown-menus .dropdown-menu {
       
       <span class="post-meta">
         <span class="p-dot"></span>
-        共 715 字
+        共 72 字
       </span>
     
     
@@ -484,7 +484,7 @@ header .header__right .dropdown-menus .dropdown-menu {
         <span class="p-dot"></span>
         
         预计 
-        37
+        2
          分钟
       </span>
     
@@ -503,44 +503,28 @@ header .header__right .dropdown-menus .dropdown-menu {
 <div class="article-m">
   <div class="post-toc">
     
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">一、问题描述</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">主要流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gihub%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">gihub操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDpicgo"><span class="toc-number">4.</span> <span class="toc-text">下载picgo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#typora%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">typora配置</span></a></li></ol>
     
   </div>
     <div id="article">
       <div id="post-content" class="markdown-body textretty">
-        <blockquote>
-<p>以zookeeper为例</p>
-</blockquote>
-<h2 id="一、问题描述"><a href="#一、问题描述" class="headerlink" title="一、问题描述"></a>一、问题描述</h2><ol>
-<li>当下载zookeeper的2.2.6.RELEASE时，报错<br> <code>Could not find artifact org.springframework.cloud:spring-cloud-starter-zookeeper-discovery:pom:2.2.6.RELEASE in central </code></li>
-</ol>
-<p><img src="https://gitee.com/xiang-bijun/image/raw/master/typora_img/668de9a062a9101920d4278b388a7e2a.png" alt="668de9a062a9101920d4278b388a7e2a"></p>
-<ul>
-<li>说明在maven仓库中找不到2.2.6.RELEASE这个版本，那么现在我们就应该去看是不是中央仓库配置出了问题，最快验证办法就是下载其他依赖，发现可以正常下载，说明中央仓库配置没出问题。在这里，顺便推荐下面的中央仓库alibaba镜像配置</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">name</span>&gt;</span>阿里云公共仓库<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/central<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>repo1<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>central repo<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo1.maven.org/maven2/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>apache snapshots<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">name</span>&gt;</span>阿里云阿帕奇仓库<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/apache-snapshots<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">proxies</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">activeProfiles</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">profile</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">layout</span>&gt;</span>default<span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">releases</span>&gt;</span></span><br><span class="line">                      <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></span><br><span class="line">                      <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">id</span>&gt;</span>MavenCentral<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo1.maven.org/maven2/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmavenApache<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/apache-snapshots<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span>             </span><br><span class="line">   <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>当ali镜像找不到时，会去maven中央仓库寻找</p>
-<ol start="2">
-<li>检查中央仓库配置无误后，就应该看仓库中是否存在这个依赖</li>
-</ol>
-</blockquote>
-<ul>
-<li>第一步看maven仓库，<a target="_blank" rel="noopener" href="https://repo.maven.apache.org/maven2/">maven</a>。（看这个比较麻烦）</li>
-<li>第二步看ali镜像仓库，<a target="_blank" rel="noopener" href="https://developer.aliyun.com/mvn/search">ali-mirror</a><br><img src="https://gitee.com/xiang-bijun/image/raw/master/typora_img/f522f1d6fd054ac2eebce4ed25e8e6c1.png" alt="f522f1d6fd054ac2eebce4ed25e8e6c1"><br>观察发现确实没有2.2.6.RELEASE这个版本，那么我们可以换成2.2.5的版本<br><img src="https://gitee.com/xiang-bijun/image/raw/master/typora_img/efabc10f62c512c511c31b28de6a5839.png" alt="efabc10f62c512c511c31b28de6a5839"></li>
-</ul>
-<ol start="3">
-<li>上面换成2.2.5之后，又带来了一个新的问题，那就是<code>spring-cloud-starter-zookeeper-discovery</code>这个依赖，spring自带了一个zookeeper的版本，但是这个zookeeper依赖没有下载，所以报错<code>Cannot resolve org.apache.zookeeper:zookeeper:3.5.3-beta</code>。接下来我们有两种办法：</li>
-</ol>
-<ul>
-<li>下载zookeeper:3.5.3-beta版本即可</li>
-<li>在spring-cloud-starter-zookeeper-discover排除zookeeper:3.5.3-beta，重新导入其他版本的zookeeper<blockquote>
-<p>这里使用第二种办法,版本号已经在父工程中约束</p>
-</blockquote>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>hexo搭建的在线网站图片无法展示</p>
+<h2 id="主要流程"><a href="#主要流程" class="headerlink" title="主要流程"></a>主要流程</h2><p><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260114222021584.png" alt="image-20260114222021584"></p>
+<h2 id="gihub操作"><a href="#gihub操作" class="headerlink" title="gihub操作"></a>gihub操作</h2><ol>
+<li><p>建立仓库，要求公开<br><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260114223503346.png" alt="image-20260114223503346"></p>
 </li>
-</ul>
-<p><img src="https://gitee.com/xiang-bijun/image/raw/master/typora_img/9437f53dc0897f564bd0fffb6d165e08.png" alt="9437f53dc0897f564bd0fffb6d165e08"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">          &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;spring-cloud-starter-zookeeper-discovery&lt;/artifactId&gt;</span><br><span class="line">          &lt;exclusions&gt;</span><br><span class="line">              &lt;exclusion&gt;</span><br><span class="line">                  &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;</span><br><span class="line">                  &lt;artifactId&gt;zookeeper&lt;/artifactId&gt;</span><br><span class="line">              &lt;/exclusion&gt;</span><br><span class="line">          &lt;/exclusions&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br><span class="line">      &lt;dependency&gt;</span><br><span class="line">          &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;zookeeper&lt;/artifactId&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<li><p>获取token<br><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260114223602403.png" alt="image-20260114223602403"></p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260114223632811.png" alt="image-20260114223632811"></p>
+<h2 id="下载picgo"><a href="#下载picgo" class="headerlink" title="下载picgo"></a>下载picgo</h2><ol>
+<li>下载<br><a target="_blank" rel="noopener" href="https://molunerfinn.com/PicGo/">https://molunerfinn.com/PicGo/</a></li>
+<li>安装后配置github图床，token从github获取<br><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260114223335185.png" alt="image-20260114223335185"></li>
+</ol>
+<h2 id="typora配置"><a href="#typora配置" class="headerlink" title="typora配置"></a>typora配置</h2><blockquote>
+<p>打开偏好设置，配置自动上传图片</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260114223830534.png" alt="image-20260114223830534"></p>
 
       </div>
     </div>
@@ -551,12 +535,12 @@ header .header__right .dropdown-menus .dropdown-menu {
     <div id="p-meta-i">
         
               
-                <a class="hover-with-bg" href="/dcmblog/categories/Maven/">Maven</a>
+                <a class="hover-with-bg" href="/dcmblog/categories/hexo/">hexo</a>
               
           
           
               
-                <a class="hover-with-bg" href="/dcmblog/tags/Maven%E4%BE%9D%E8%B5%96/"># Maven依赖</a>
+                <a class="hover-with-bg" href="/dcmblog/tags/hexo/"># hexo</a>
               
           
     </div>
@@ -568,7 +552,7 @@ header .header__right .dropdown-menus .dropdown-menu {
 
   <div class="post-copyright">
     <p style="margin: 5px 0;">文章作者：<a href="/">Bijun Xiang</a></p>
-    <p style="margin: 5px 0;">文章链接：<a href="https://towardsvast.github.io/dcmblog/2026/01/13/Maven%E4%BE%9D%E8%B5%96%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3/">https://towardsvast.github.io/dcmblog/2026/01/13/Maven%E4%BE%9D%E8%B5%96%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3/</a></p>
+    <p style="margin: 5px 0;">文章链接：<a href="https://towardsvast.github.io/dcmblog/2026/01/14/hexo%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/">https://towardsvast.github.io/dcmblog/2026/01/14/hexo%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/</a></p>
     <p style="margin: 5px 0;">版权声明：本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处，谢谢。</p>
   </div>
   
