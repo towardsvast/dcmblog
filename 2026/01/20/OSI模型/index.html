@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="/dcmblog/null">
     <link rel="icon" type="image/png" href="/dcmblog/null">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-    <title>Categories - HaoMiao</title>
+    <title>OSI模型 - HaoMiao</title>
     
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     
@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="Bijun Xiang">
     <meta name="keywords" content="">
-    <meta property="og:title" content="Categories"/>
+    <meta property="og:title" content="OSI模型"/>
     <style>
 
 
@@ -446,18 +446,159 @@ header .header__right .dropdown-menus .dropdown-menu {
         <div id="page-main" class="main-content">
         <div class="mg-top">
             
+
 <article class="page">
-<div id="post-meta-m" style="padding-bottom:0;">
+<div id="post-meta-m">
     <div class="post-meta" id="post-meta">
-      <h3>Categories</h3>
-    </div>
+  <h3>OSI模型</h3>
+    
+      <span class="post-meta-label">
+        Bijun Xiang
+      </span>
+    
+    
+      <span class="post-meta-label">
+        <span class="p-dot"></span>
+        <time datetime="2026-01-20 22:39" pubdate>
+          2026-01-20
+        </time>
+      </span>
+    
+    
+      
+      <span class="post-meta">
+        <span class="p-dot"></span>
+        共 813 字
+      </span>
+    
+    
+      
+      <span class="post-meta">
+        <span class="p-dot"></span>
+        
+        预计 
+        4
+         分钟
+      </span>
+    
+    
+      
+      <span class="post-meta">
+        <span class="p-dot"></span>
+        <span id="busuanzi_container_page_pv">
+          共 <span id="busuanzi_value_page_pv"></span> 次阅读
+        </span>
+      </span>
+    
   </div>
-    <div class="archive-list" style="padding-top:10px;">
-        <div class="category-list-content">
-            <ul class="all-category-list"><li class="all-category-list-item"><a class="all-category-list-link" href="/dcmblog/categories/computer-network/">computer-network</a><span class="all-category-list-count">1</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/dcmblog/categories/design-pattern/">design-pattern</a><span class="all-category-list-count">2</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/dcmblog/categories/hexo/">hexo</a><span class="all-category-list-count">1</span></li></ul>
-        </div>
+  
+</div>
+<div class="article-m">
+  <div class="post-toc">
+    
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81OSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">一、OSI七层模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81TCP-IP-%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">二、TCP&#x2F;IP 四层模型</span></a></li></ol>
+    
+  </div>
+    <div id="article">
+      <div id="post-content" class="markdown-body textretty">
+        <h3 id="一、OSI七层模型"><a href="#一、OSI七层模型" class="headerlink" title="一、OSI七层模型"></a>一、OSI七层模型</h3><p><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260120224322058.png" alt="image-20260120224322058"></p>
+<ol>
+<li>物理层（Physical Layer）：</li>
+</ol>
+<p>​     物理层是网络通信的最底层，主要关注物理媒介和传输数据的硬件特性。</p>
+<p>​     它定义了数据传输的物理介质，如电缆、光纤、无线电波等。</p>
+<p>​     主要任务包括数据的编码、传输速率、电压水平等。</p>
+<ol start="2">
+<li>数据链路层（Data Link Layer）：</li>
+</ol>
+<p>​     数据链路层负责将原始比特流组织成数据帧，并在物理介质上进行可靠的传输。</p>
+<p>​     这一层还负责物理地址（MAC地址）的识别和帧的错误检测与校正。</p>
+<p>​     常见的数据链路协议包括以太网（Ethernet）和Wi-Fi。</p>
+<ol start="3">
+<li>网络层（Network Layer）：</li>
+</ol>
+<p>​     网络层的主要任务是路由数据包，决定数据包的最佳路径从源到目的地。</p>
+<p>​     IP（Internet Protocol）是网络层最著名的协议，负责地址分配和数据包转发。</p>
+<ol start="4">
+<li>传输层（Transport Layer）：</li>
+</ol>
+<p>​     传输层提供端到端的数据传输服务，确保数据的可靠性和完整性。</p>
+<p>​     常见的传输层协议包括TCP（传输控制协议）和UDP（用户数据报协议）。</p>
+<ol start="5">
+<li>会话层（Session Layer）：</li>
+</ol>
+<p>​     会话层负责建立、管理和终止会话（会话是指两个设备之间的通信会话）。</p>
+<p>​     它还可以处理会话中的同步和恢复问题。</p>
+<ol start="6">
+<li>表示层（Presentation Layer）：</li>
+</ol>
+<p>​     表示层主要关注数据的格式化和编解码，以确保不同系统间的数据交换。</p>
+<p>​     它可以处理数据的加密、压缩和数据格式转换。</p>
+<ol start="7">
+<li>应用层（Application Layer）：</li>
+</ol>
+<p>​     应用层是最高层，为最终用户提供应用程序和网络服务。</p>
+<p>​     这包括诸如Web浏览器、电子邮件客户端、文件传输协议（FTP）等应用。</p>
+<p>​     与用户界面和应用程序通信的所有应用层协议都属于此层。</p>
+<h3 id="二、TCP-IP-四层模型"><a href="#二、TCP-IP-四层模型" class="headerlink" title="二、TCP&#x2F;IP 四层模型"></a>二、TCP&#x2F;IP 四层模型</h3><p><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260120224750847.png" alt="image-20260120224750847"></p>
+<ol>
+<li>网络接口层（Network Interface Layer）：</li>
+</ol>
+<p>​     这一层与OSI模型的数据链路层和物理层合并在一起，负责管理物理硬件和数据链路协议，以便将数据从一个设备传输到下一个。</p>
+<p>​     它包括了硬件和驱动程序，如以太网卡，Wi-Fi适配器等，以及与数据链路相关的协议，如以太网、Wi-Fi等。</p>
+<ol start="2">
+<li>网络层（Internet Layer）：</li>
+</ol>
+<p>​     这一层与OSI模型的网络层相对应，负责路由数据包，确保它们能够从源主机传输到目的主机。</p>
+<p>​     IP协议是网络层的核心协议，用于标识和定位设备，以及确定数据包的最佳路径。</p>
+<ol start="3">
+<li>传输层（Transport Layer）：</li>
+</ol>
+<p>​     传输层与OSI模型的传输层相对应，它负责端到端的数据传输，确保数据的可靠性和完整性。</p>
+<p>​     在TCP&#x2F;IP模型中，最著名的协议是TCP和UDP。TCP提供可靠的、面向连接的通信，而UDP提供不可靠但更快速的通信。</p>
+<ol start="4">
+<li>应用层（Application Layer）：</li>
+</ol>
+<p>​     应用层与OSI模型的应用层相对应，它包括了应用程序和用户接口。</p>
+<p>​     在这个层次，各种应用层协议和服务运行，如HTTP（用于Web浏览）、SMTP（用于电子邮件）、FTP（用于文件传输）等。</p>
+
+      </div>
     </div>
-  </article>
+</div>
+
+<div class="post-category">
+
+    <div id="p-meta-i">
+        
+              
+                <a class="hover-with-bg" href="/dcmblog/categories/computer-network/">computer-network</a>
+              
+          
+          
+              
+                <a class="hover-with-bg" href="/dcmblog/tags/OSI/"># OSI</a>
+              
+                <a class="hover-with-bg" href="/dcmblog/tags/computer-network/"># computer-network</a>
+              
+          
+    </div>
+</div>
+
+
+<div class="post-footer">
+  
+
+  <div class="post-copyright">
+    <p style="margin: 5px 0;">文章作者：<a href="/">Bijun Xiang</a></p>
+    <p style="margin: 5px 0;">文章链接：<a href="https://towardsvast.github.io/dcmblog/2026/01/20/OSI%E6%A8%A1%E5%9E%8B/">https://towardsvast.github.io/dcmblog/2026/01/20/OSI%E6%A8%A1%E5%9E%8B/</a></p>
+    <p style="margin: 5px 0;">版权声明：本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处，谢谢。</p>
+  </div>
+  
+</div>
+
+</article>
+
+
         </div>
         
 <footer class="text-center">
@@ -475,6 +616,12 @@ header .header__right .dropdown-menus .dropdown-menu {
 
 <div class="p-btn">
     
+        <a class="toc-btn" id="toc-btn"><i id="i-menu"></i></a>
+    
+    
+      <a class="toc-btn" id="share-btn"><i>
+        <svg t="1670124379155" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2683" width="25" height="25"><path d="M395.946667 234.666667v64H256v469.333333h512V522.666667h64V768a64 64 0 0 1-64 64H256a64 64 0 0 1-64-64V298.666667a64 64 0 0 1 64-64h139.946667z m335.850666-87.914667l150.848 150.826667-158.378666 158.4-45.269334-45.248L748.394667 341.333333H672c-121.685333 0-220.714667 97.024-223.914667 217.941334L448 565.333333v85.333334h-64v-85.333334C384 406.272 512.938667 277.333333 672 277.333333h99.861333l-85.312-85.333333 45.248-45.248z" p-id="2684" fill="var(--first-text-color)"></path></svg>
+      </i></a>
     
     <a href="javascript:window.scrollTo({top:0,behavior:'smooth'});" class="click-btn">
       <i id="i-up"></i>
@@ -509,10 +656,64 @@ header .header__right .dropdown-menus .dropdown-menu {
 </script>
 
 
+<script>
+    var postImg = document.querySelectorAll("article[class=page] img");
+    for (let imgi = 0; imgi < postImg.length; imgi++) {
+        postImg[imgi].onclick = () => {
+            let zoomImg = document.createElement("div");
+            zoomImg.id = "zoomImg";
+            zoomImg.innerHTML = `<div id="zoom-picture"></div>
+    <div class="poptrox-overlay"
+        style="position: fixed; left: 0px; top: 0px; z-index: 20000; width: 100%; height: 100%; text-align: center; cursor: zoom-out; opacity: 1;">
+        <div style="display:inline-block;height:100%;vertical-align:middle;"></div>
+        <div
+            style="position:absolute;left:0;top:0;width:100%;height:100%;background:#000000;opacity:0;filter:alpha(opacity=0);">
+        </div>
+        <div class="poptrox-popup"
+            style="display: inline-block; vertical-align: middle; position: relative; z-index: 1; cursor: zoom-out; min-width: 10px; min-height: 10px; width: auto; height: auto;">
+            <div class="loader" style="display: none;"></div>
+            <div class="pic" style="text-indent: 0px;"><img
+                    src="${ postImg[imgi].srcset || postImg[imgi].src }" alt="Loading..."
+                    style="vertical-align: bottom; max-width: 85vw; max-height: 85vh;"></div>
+        </div>
+    </div>`;
+            document.body.appendChild(zoomImg);
+                document.querySelector("#zoomImg").onclick = () => {
+                    document.querySelector("#zoomImg").remove();
+                }
+        }
+    }
+    
+</script>
 
 
 
 
+    <script>
+        query("#toc-btn")[0].onclick = () => {
+            if (query(".post-toc")[0].innerHTML) {
+                toggleClass(".post-toc", "display-inline");
+            }
+        }
+
+        if (!query(".post-toc")[0].innerHTML) {
+            addClass("#toc-btn","display-none");
+        }
+    </script>
+
+
+
+    <script>
+        query("#share-btn")[0].onclick = async () => {
+            let url = `${location.protocol}//${location.hostname}${location.port ? ":"+location.port:location.port}${location.pathname}#read=${sessionStorage.getItem(location.pathname+"_read_y") || ""}`;
+            try {
+                await navigator.clipboard.writeText(url);
+                prompt_core("分享链接已经复制至剪贴板", 4800, true);
+            } catch(e) {
+                prompt_core("分享链接复制失败，请手动复制<br/>"+url, 4800, false);
+            }
+        }
+    </script>
 
 
 
@@ -528,6 +729,45 @@ header .header__right .dropdown-menus .dropdown-menu {
     </script>
 
 
+
+    <script>
+        const getScrollPosition = (el = window) => ({
+            x: el.pageXOffset !== undefined ? el.pageXOffset : el.scrollLeft,
+            y: el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop
+        });
+        // 此处的 750 是「页面元素的最大宽度」
+        var wx = document.getElementsByClassName("article-m")[0].clientWidth;
+        var wy = document.getElementsByClassName("article-m")[0].clientHeight;
+        function windowScroll() {
+            // 反复修改 确保页面尺寸不改变
+            wx = document.getElementsByClassName("article-m")[0].clientWidth;
+            wy = document.getElementsByClassName("article-m")[0].clientHeight;
+            let y = Math.round(getScrollPosition().y);
+            // console.log(y);
+            // 组合字符串，同时记录页面坐标，页面宽度和高度
+            let p = `${y}:${wx}:${wy}`;
+            // 写入到 sessionStorage 中
+            sessionStorage.setItem(location.pathname + "_read_y", p);
+        }
+        // URL 中是否包含传递的坐标信息
+        setTimeout(() => {
+            if (location.hash.split("#read=").length > 1) {
+                prompt_core("已有阅读进度，正在跳转", 4800, true);
+                // 分离字符串
+                let read_y = location.hash.split("#read=")[1];
+                read_y = read_y.split(":");
+                // 组合乘积，顺滑移动至坐标
+                window.scrollTo({top: Math.round(Number(read_y[0]) * Number(read_y[1] * Number(read_y[2] / wx / wy))), behavior: "smooth"});
+            } else {
+                // 从 sessionStorage 中获取
+                let read_y = sessionStorage.getItem(location.pathname + "_read_y") || "0:0:0";
+                read_y = read_y.split(":");
+                if (read_y[0] != "0") prompt_core("已有阅读进度，正在跳转", 4800, true);
+                window.scrollTo({top: Math.round(Number(read_y[0]) * Number(read_y[1] * Number(read_y[2] / wx / wy))), behavior: "smooth"});
+            }
+        }, 500);
+        window.onscroll = windowScroll;
+    </script>
 
 
 
