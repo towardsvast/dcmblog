@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="/dcmblog/null">
     <link rel="icon" type="image/png" href="/dcmblog/null">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-    <title>HaoMiao</title>
+    <title>Redis安装 - HaoMiao</title>
     
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     
@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="Bijun Xiang">
     <meta name="keywords" content="">
-    
+    <meta property="og:title" content="Redis安装"/>
     <style>
 
 
@@ -350,6 +350,13 @@ header .header__right .dropdown-menus .dropdown-menu {
     
 
     
+        <!--
+        <link rel="stylesheet" href="/dcmblog/css/page.css" media="print"
+            onload="this.media='all';this.onload=null">
+        <noscript>-->
+            <link rel="stylesheet" href="/dcmblog/css/page.css">
+        <!--</noscript>-->
+    
     
     <link rel="stylesheet" href="/dcmblog/css/main.css" media="print" onload="this.media='all';this.onload=null">
     <noscript>
@@ -439,287 +446,121 @@ header .header__right .dropdown-menus .dropdown-menu {
         <div id="page-main" class="main-content">
         <div class="mg-top">
             
-  <div id="index-banner" class="text-center middle-center">
-    <div class="banner-text">
-        <h3 id="banner-name">
-            HaoMiao Blog
-        </h3>
-        <p class="slogan">
-          May your days be filled with sunshine and laughter, dcmxbj@163.com
-        </p>
+
+<article class="page">
+<div id="post-meta-m">
+    <div class="post-meta" id="post-meta">
+  <h3>Redis安装</h3>
+    
+      <span class="post-meta-label">
+        Bijun Xiang
+      </span>
+    
+    
+      <span class="post-meta-label">
+        <span class="p-dot"></span>
+        <time datetime="2026-01-25 16:14" pubdate>
+          2026-01-25
+        </time>
+      </span>
+    
+    
+      
+      <span class="post-meta">
+        <span class="p-dot"></span>
+        共 187 字
+      </span>
+    
+    
+      
+      <span class="post-meta">
+        <span class="p-dot"></span>
+        
+        预计 
+        1
+         分钟
+      </span>
+    
+    
+      
+      <span class="post-meta">
+        <span class="p-dot"></span>
+        <span id="busuanzi_container_page_pv">
+          共 <span id="busuanzi_value_page_pv"></span> 次阅读
+        </span>
+      </span>
+    
+  </div>
+  
+</div>
+<div class="article-m">
+  <div class="post-toc">
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E5%AE%89%E8%A3%85redis"><span class="toc-number">1.</span> <span class="toc-text">Windows安装redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%B8%BAWindows%E6%9C%8D%E5%8A%A1%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">安装为Windows服务（推荐）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDRedis%E6%A1%8C%E9%9D%A2%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">3.</span> <span class="toc-text">下载Redis桌面客户端</span></a></li></ol>
+    
+  </div>
+    <div id="article">
+      <div id="post-content" class="markdown-body textretty">
+        <h2 id="Windows安装redis"><a href="#Windows安装redis" class="headerlink" title="Windows安装redis"></a>Windows安装redis</h2><ol>
+<li><p>下载地址：<br><a target="_blank" rel="noopener" href="https://github.com/microsoftarchive/redis/releases">GitHub - MicrosoftArchive&#x2F;redis</a><br>下载zip文件</p>
+</li>
+<li><p>解压到目录</p>
+</li>
+<li><p>修改**<code>redis.windows.conf</code>**文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 绑定监听 IP（默认 127.0.0.1，仅本地访问；若需远程访问改为 0.0.0.0，但不安全！）</span><br><span class="line">bind 127.0.0.1</span><br><span class="line"> </span><br><span class="line"># 监听端口（默认 6379，若被占用可修改为其他端口如 6380）</span><br><span class="line">port 6379</span><br><span class="line"> </span><br><span class="line"># 启用密码认证（生产环境必改，本地开发可选）</span><br><span class="line">requirepass your_redis_password  # 替换为你的密码（如 &quot;123456&quot;）</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>启动redis服务<br>redis-server.exe redis.windows.conf</p>
+</li>
+</ol>
+<h2 id="安装为Windows服务（推荐）"><a href="#安装为Windows服务（推荐）" class="headerlink" title="安装为Windows服务（推荐）"></a>安装为Windows服务（推荐）</h2><ol>
+<li>输入命令</li>
+</ol>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\software\redis\Redis-x64-3.0.504\redis-server.exe <span class="attr">--service-install</span> D:\software\redis\Redis-x64-3.0.504\redis.windows.conf <span class="attr">--loglevel</span> verbose</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260125162300199.png" alt="image-20260125162300199"></p>
+<ol start="2">
+<li>启动服务<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net start Redis</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="下载Redis桌面客户端"><a href="#下载Redis桌面客户端" class="headerlink" title="下载Redis桌面客户端"></a>下载Redis桌面客户端</h2><p><a target="_blank" rel="noopener" href="https://gitee.com/qishibo/AnotherRedisDesktopManager/releases">https://gitee.com/qishibo/AnotherRedisDesktopManager/releases</a></p>
+
+      </div>
+    </div>
+</div>
+
+<div class="post-category">
+
+    <div id="p-meta-i">
+        
+              
+                <a class="hover-with-bg" href="/dcmblog/categories/software/">software</a>
+              
+          
+          
+              
+                <a class="hover-with-bg" href="/dcmblog/tags/Redis/"># Redis</a>
+              
+                <a class="hover-with-bg" href="/dcmblog/tags/software/"># software</a>
+              
+          
     </div>
 </div>
 
 
-<div class="post-card-center">
-<div class="post-card-main">
-
-    
-      <div class="index-card">
-        
-        <article class="index-card-info">
-          <h3 class="index-header">
-            <a href="/dcmblog/2026/01/25/Redis%E5%AE%89%E8%A3%85/">
-            
-            Redis安装</a>
-          </h3>
-          <p class="index-excerpt">
-              
-              
-                
-              
-              Windows安装redis
-下载地址：GitHub - MicrosoftArchive&#x2F;redis下载zip文件
-
-解压到目录
-
-修改**redis.windows.conf**文件
-12345678# 绑定监听 IP（默认 127.0.0.1，仅本地访问；若需远程访问改为 0.0.0.0，但不安全！）bind 127.0.0.1 # 监听端口（默认 6379，若被占用可修改为其他端
-          </p>
-          <div class="index-btm post-metas">
-            
-              
-                <time datetime="2026-01-25 16:14" pubdate>
-                  2026-01-25
-                </time>
-              
-            
-            
-              
-                
-                  <span class="p-dot"></span><a href="/dcmblog/categories/software/">software</a>
-                
-              
-            
-          </div>
-        </article>
-      </div>
-    
+<div class="post-footer">
   
-    
-      <div class="index-card">
-        
-        <article class="index-card-info">
-          <h3 class="index-header">
-            <a href="/dcmblog/2026/01/22/SPI/">
-            
-            SPI</a>
-          </h3>
-          <p class="index-excerpt">
-              
-              
-                
-              
-              何谓SPI？
-SPI 即Service Provider Interface，服务提供者的接口，专门提供给服务提供者或者框架功能的开发者去使用的一个接口。很多框架都使用到了SPI，数据库加载驱动、日志接口等
 
-SPI和API有什么区别
-SPI 中的接口，是服务调用方设计接口规则，由实现方去实现接口。比如日志面板slf4j，具体日志框架是logback、log4j还是log4j2并不关心，slf4j
-          </p>
-          <div class="index-btm post-metas">
-            
-              
-                <time datetime="2026-01-22 21:56" pubdate>
-                  2026-01-22
-                </time>
-              
-            
-            
-              
-                
-                  <span class="p-dot"></span><a href="/dcmblog/categories/spring/">spring</a>
-                
-              
-            
-          </div>
-        </article>
-      </div>
-    
-  
-    
-      <div class="index-card">
-        
-        <article class="index-card-info">
-          <h3 class="index-header">
-            <a href="/dcmblog/2026/01/20/OSI%E6%A8%A1%E5%9E%8B/">
-            
-            OSI模型</a>
-          </h3>
-          <p class="index-excerpt">
-              
-              
-                
-              
-              一、OSI七层模型
-
-物理层（Physical Layer）：
-
-​     物理层是网络通信的最底层，主要关注物理媒介和传输数据的硬件特性。
-​     它定义了数据传输的物理介质，如电缆、光纤、无线电波等。
-​     主要任务包括数据的编码、传输速率、电压水平等。
-
-数据链路层（Data Link Layer）：
-
-​     数据链路层负责将原始比特流组织成数据帧，并在物理介质上进行可靠的
-          </p>
-          <div class="index-btm post-metas">
-            
-              
-                <time datetime="2026-01-20 22:39" pubdate>
-                  2026-01-20
-                </time>
-              
-            
-            
-              
-                
-                  <span class="p-dot"></span><a href="/dcmblog/categories/computer-network/">computer-network</a>
-                
-              
-            
-          </div>
-        </article>
-      </div>
-    
-  
-    
-      <div class="index-card">
-        
-        <article class="index-card-info">
-          <h3 class="index-header">
-            <a href="/dcmblog/2026/01/20/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">
-            
-            建造者模式</a>
-          </h3>
-          <p class="index-excerpt">
-              
-              
-                
-              
-              
-从零开始学设计模式(五)：建造者模式(Builder Pattern) - 墨天轮
-
-定义：
-在现实世界中的很多东西都是由很多组成部分构成的，比如房子它由砖头、水泥、石灰、钢筋等组成，即一个个简单的组成部分构成了一个复杂的房子。同样在软件系统中也存在很多复杂对象，而复杂对象的一些属性就相当于盖房子的材料，创建对象的过程就相当于盖房子的过程。由于组合部件的过程很复杂，因此，这些部件的组合过程往往被
-          </p>
-          <div class="index-btm post-metas">
-            
-              
-                <time datetime="2026-01-20 22:19" pubdate>
-                  2026-01-20
-                </time>
-              
-            
-            
-              
-                
-                  <span class="p-dot"></span><a href="/dcmblog/categories/design-pattern/">design-pattern</a>
-                
-              
-            
-          </div>
-        </article>
-      </div>
-    
-  
-    
-      <div class="index-card">
-        
-        <article class="index-card-info">
-          <h3 class="index-header">
-            <a href="/dcmblog/2025/01/19/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">
-            
-            动态代理</a>
-          </h3>
-          <p class="index-excerpt">
-              
-              
-                
-              
-              动态代理
-
-Spring动态代理主要是通过cglib和jdk的动态代理实现.
-Aspectj是一个单独的AOP框架，在编译或运行时生成代理类，可以实现前置增强、环绕增强、后置增强等功能。平时开发可以引入Aspetcj依赖实现一系列代理操作
-
-
-cglib动态代理
-注意：jdk8以上版本对反射进行了限制，需要手动打开。VM参数添加：–add-opens java.base&#x2F;java.lan
-          </p>
-          <div class="index-btm post-metas">
-            
-              
-                <time datetime="2025-01-19 22:04" pubdate>
-                  2025-01-19
-                </time>
-              
-            
-            
-              
-                
-                  <span class="p-dot"></span><a href="/dcmblog/categories/design-pattern/">design-pattern</a>
-                
-              
-            
-          </div>
-        </article>
-      </div>
-    
-  
-    
-      <div class="index-card">
-        
-        <article class="index-card-info">
-          <h3 class="index-header">
-            <a href="/dcmblog/2025/01/14/hexo%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/">
-            
-            hexo图床搭建</a>
-          </h3>
-          <p class="index-excerpt">
-              
-              
-                
-              
-              背景hexo搭建的在线网站图片无法展示
-主要流程
-gihub操作
-建立仓库，要求公开
-
-获取token
-
-
-
-下载picgo
-下载https://molunerfinn.com/PicGo/
-安装后配置github图床，token从github获取
-
-typora配置
-打开偏好设置，配置自动上传图片
-
-
-
-          </p>
-          <div class="index-btm post-metas">
-            
-              
-                <time datetime="2025-01-14 22:10" pubdate>
-                  2025-01-14
-                </time>
-              
-            
-            
-              
-                
-                  <span class="p-dot"></span><a href="/dcmblog/categories/hexo/">hexo</a>
-                
-              
-            
-          </div>
-        </article>
-      </div>
-    
+  <div class="post-copyright">
+    <p style="margin: 5px 0;">文章作者：<a href="/">Bijun Xiang</a></p>
+    <p style="margin: 5px 0;">文章链接：<a href="https://towardsvast.github.io/dcmblog/2026/01/25/Redis%E5%AE%89%E8%A3%85/">https://towardsvast.github.io/dcmblog/2026/01/25/Redis%E5%AE%89%E8%A3%85/</a></p>
+    <p style="margin: 5px 0;">版权声明：本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处，谢谢。</p>
+  </div>
   
 </div>
-</div>
+
+</article>
+
 
         </div>
         
@@ -738,6 +579,12 @@ typora配置
 
 <div class="p-btn">
     
+        <a class="toc-btn" id="toc-btn"><i id="i-menu"></i></a>
+    
+    
+      <a class="toc-btn" id="share-btn"><i>
+        <svg t="1670124379155" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2683" width="25" height="25"><path d="M395.946667 234.666667v64H256v469.333333h512V522.666667h64V768a64 64 0 0 1-64 64H256a64 64 0 0 1-64-64V298.666667a64 64 0 0 1 64-64h139.946667z m335.850666-87.914667l150.848 150.826667-158.378666 158.4-45.269334-45.248L748.394667 341.333333H672c-121.685333 0-220.714667 97.024-223.914667 217.941334L448 565.333333v85.333334h-64v-85.333334C384 406.272 512.938667 277.333333 672 277.333333h99.861333l-85.312-85.333333 45.248-45.248z" p-id="2684" fill="var(--first-text-color)"></path></svg>
+      </i></a>
     
     <a href="javascript:window.scrollTo({top:0,behavior:'smooth'});" class="click-btn">
       <i id="i-up"></i>
@@ -772,10 +619,64 @@ typora配置
 </script>
 
 
+<script>
+    var postImg = document.querySelectorAll("article[class=page] img");
+    for (let imgi = 0; imgi < postImg.length; imgi++) {
+        postImg[imgi].onclick = () => {
+            let zoomImg = document.createElement("div");
+            zoomImg.id = "zoomImg";
+            zoomImg.innerHTML = `<div id="zoom-picture"></div>
+    <div class="poptrox-overlay"
+        style="position: fixed; left: 0px; top: 0px; z-index: 20000; width: 100%; height: 100%; text-align: center; cursor: zoom-out; opacity: 1;">
+        <div style="display:inline-block;height:100%;vertical-align:middle;"></div>
+        <div
+            style="position:absolute;left:0;top:0;width:100%;height:100%;background:#000000;opacity:0;filter:alpha(opacity=0);">
+        </div>
+        <div class="poptrox-popup"
+            style="display: inline-block; vertical-align: middle; position: relative; z-index: 1; cursor: zoom-out; min-width: 10px; min-height: 10px; width: auto; height: auto;">
+            <div class="loader" style="display: none;"></div>
+            <div class="pic" style="text-indent: 0px;"><img
+                    src="${ postImg[imgi].srcset || postImg[imgi].src }" alt="Loading..."
+                    style="vertical-align: bottom; max-width: 85vw; max-height: 85vh;"></div>
+        </div>
+    </div>`;
+            document.body.appendChild(zoomImg);
+                document.querySelector("#zoomImg").onclick = () => {
+                    document.querySelector("#zoomImg").remove();
+                }
+        }
+    }
+    
+</script>
 
 
 
 
+    <script>
+        query("#toc-btn")[0].onclick = () => {
+            if (query(".post-toc")[0].innerHTML) {
+                toggleClass(".post-toc", "display-inline");
+            }
+        }
+
+        if (!query(".post-toc")[0].innerHTML) {
+            addClass("#toc-btn","display-none");
+        }
+    </script>
+
+
+
+    <script>
+        query("#share-btn")[0].onclick = async () => {
+            let url = `${location.protocol}//${location.hostname}${location.port ? ":"+location.port:location.port}${location.pathname}#read=${sessionStorage.getItem(location.pathname+"_read_y") || ""}`;
+            try {
+                await navigator.clipboard.writeText(url);
+                prompt_core("分享链接已经复制至剪贴板", 4800, true);
+            } catch(e) {
+                prompt_core("分享链接复制失败，请手动复制<br/>"+url, 4800, false);
+            }
+        }
+    </script>
 
 
 
@@ -791,6 +692,45 @@ typora配置
     </script>
 
 
+
+    <script>
+        const getScrollPosition = (el = window) => ({
+            x: el.pageXOffset !== undefined ? el.pageXOffset : el.scrollLeft,
+            y: el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop
+        });
+        // 此处的 750 是「页面元素的最大宽度」
+        var wx = document.getElementsByClassName("article-m")[0].clientWidth;
+        var wy = document.getElementsByClassName("article-m")[0].clientHeight;
+        function windowScroll() {
+            // 反复修改 确保页面尺寸不改变
+            wx = document.getElementsByClassName("article-m")[0].clientWidth;
+            wy = document.getElementsByClassName("article-m")[0].clientHeight;
+            let y = Math.round(getScrollPosition().y);
+            // console.log(y);
+            // 组合字符串，同时记录页面坐标，页面宽度和高度
+            let p = `${y}:${wx}:${wy}`;
+            // 写入到 sessionStorage 中
+            sessionStorage.setItem(location.pathname + "_read_y", p);
+        }
+        // URL 中是否包含传递的坐标信息
+        setTimeout(() => {
+            if (location.hash.split("#read=").length > 1) {
+                prompt_core("已有阅读进度，正在跳转", 4800, true);
+                // 分离字符串
+                let read_y = location.hash.split("#read=")[1];
+                read_y = read_y.split(":");
+                // 组合乘积，顺滑移动至坐标
+                window.scrollTo({top: Math.round(Number(read_y[0]) * Number(read_y[1] * Number(read_y[2] / wx / wy))), behavior: "smooth"});
+            } else {
+                // 从 sessionStorage 中获取
+                let read_y = sessionStorage.getItem(location.pathname + "_read_y") || "0:0:0";
+                read_y = read_y.split(":");
+                if (read_y[0] != "0") prompt_core("已有阅读进度，正在跳转", 4800, true);
+                window.scrollTo({top: Math.round(Number(read_y[0]) * Number(read_y[1] * Number(read_y[2] / wx / wy))), behavior: "smooth"});
+            }
+        }, 500);
+        window.onscroll = windowScroll;
+    </script>
 
 
 
