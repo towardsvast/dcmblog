@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="/dcmblog/null">
     <link rel="icon" type="image/png" href="/dcmblog/null">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-    <title>Tags - HaoMiao</title>
+    <title>JVM - HaoMiao</title>
     
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     
@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="Bijun Xiang">
     <meta name="keywords" content="">
-    <meta property="og:title" content="Tags"/>
+    <meta property="og:title" content="JVM"/>
     <style>
 
 
@@ -446,18 +446,131 @@ header .header__right .dropdown-menus .dropdown-menu {
         <div id="page-main" class="main-content">
         <div class="mg-top">
             
+
 <article class="page">
-<div id="post-meta-m" style="padding-bottom:0;">
-  <div class="post-meta" id="post-meta">
-    <h3>Tags</h3>
+<div id="post-meta-m">
+    <div class="post-meta" id="post-meta">
+  <h3>JVM</h3>
+    
+      <span class="post-meta-label">
+        Bijun Xiang
+      </span>
+    
+    
+      <span class="post-meta-label">
+        <span class="p-dot"></span>
+        <time datetime="2026-01-31 20:20" pubdate>
+          2026-01-31
+        </time>
+      </span>
+    
+    
+      
+      <span class="post-meta">
+        <span class="p-dot"></span>
+        共 541 字
+      </span>
+    
+    
+      
+      <span class="post-meta">
+        <span class="p-dot"></span>
+        
+        预计 
+        2
+         分钟
+      </span>
+    
+    
+      
+      <span class="post-meta">
+        <span class="p-dot"></span>
+        <span id="busuanzi_container_page_pv">
+          共 <span id="busuanzi_value_page_pv"></span> 次阅读
+        </span>
+      </span>
+    
   </div>
+  
 </div>
-<div class="tag-page-main" style="padding-top:10px;">
-<div class="text-center tagcloud">
-  <a href="/dcmblog/tags/JVM/" style="font-size: 15px; color: #acb3c2">JVM</a> <a href="/dcmblog/tags/OSI/" style="font-size: 15px; color: #acb3c2">OSI</a> <a href="/dcmblog/tags/Redis/" style="font-size: 15px; color: #acb3c2">Redis</a> <a href="/dcmblog/tags/aspectJ/" style="font-size: 15px; color: #acb3c2">aspectJ</a> <a href="/dcmblog/tags/builder/" style="font-size: 15px; color: #acb3c2">builder</a> <a href="/dcmblog/tags/cglibProxy/" style="font-size: 15px; color: #acb3c2">cglibProxy</a> <a href="/dcmblog/tags/computer-network/" style="font-size: 15px; color: #acb3c2">computer-network</a> <a href="/dcmblog/tags/design-pattern/" style="font-size: 30px; color: #454d5d">design-pattern</a> <a href="/dcmblog/tags/hexo/" style="font-size: 15px; color: #acb3c2">hexo</a> <a href="/dcmblog/tags/jdkProxy/" style="font-size: 15px; color: #acb3c2">jdkProxy</a> <a href="/dcmblog/tags/log/" style="font-size: 15px; color: #acb3c2">log</a> <a href="/dcmblog/tags/software/" style="font-size: 15px; color: #acb3c2">software</a> <a href="/dcmblog/tags/spring/" style="font-size: 15px; color: #acb3c2">spring</a>
+<div class="article-m">
+  <div class="post-toc">
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA"><span class="toc-number">1.</span> <span class="toc-text">运行时数据区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E7%9A%84%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text">栈的动态链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E6%B7%B1%E5%BA%A6%E6%89%A9%E5%B1%95"><span class="toc-number">3.</span> <span class="toc-text">栈深度扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E7%94%9F%E4%BB%A3%E6%99%8B%E5%8D%87"><span class="toc-number">4.</span> <span class="toc-text">新生代晋升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E7%A9%BA%E9%97%B4OOM%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">堆空间OOM报错信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%A9%BA%E9%97%B4%E6%BA%A2%E5%87%BA%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF"><span class="toc-number">6.</span> <span class="toc-text">元空间溢出报错信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">7.</span> <span class="toc-text">对象创建过程</span></a></li></ol>
+    
+  </div>
+    <div id="article">
+      <div id="post-content" class="markdown-body textretty">
+        <h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260131210426310.png" alt="image-20260131210426310"></p>
+<h2 id="栈的动态链接"><a href="#栈的动态链接" class="headerlink" title="栈的动态链接"></a>栈的动态链接</h2><p>在 Class 文件中，方法调用以<strong>符号引用</strong>的形式存在于常量池。为了执行调用，这些符号引用必须被转换为内存中的<strong>直接引用</strong>。这个转换过程分为两种情况：对于静态方法、私有方法等在编译期就能确定版本的方法，这个转换在<strong>类加载的解析阶段</strong>就完成了，这称为<strong>静态解析</strong>。而对于需要根据对象实际类型才能确定具体实现的<strong>虚方法</strong>（这是实现多态的基础），这个转换过程则被推迟到<strong>程序运行期间</strong>，由<strong>动态链接</strong>来完成。因此，<strong>动态链接</strong>的核心作用是<strong>在运行时解析虚方法的调用点，将其链接到正确的方法版本上</strong>。</p>
+<h2 id="栈深度扩展"><a href="#栈深度扩展" class="headerlink" title="栈深度扩展"></a>栈深度扩展</h2><blockquote>
+<p>虚拟机栈的深度由虚拟机决定。但是HotSpot虚拟机不允许扩展</p>
+</blockquote>
+<ul>
+<li>如果不支持扩展，栈溢出报错信息：<br><strong><code>StackOverFlowError</code></strong></li>
+<li>如果支持扩展，当虚拟机在扩展栈空间不够时，则抛出：<br><strong><code>OutOfMemoryError</code></strong></li>
+</ul>
+<h2 id="新生代晋升"><a href="#新生代晋升" class="headerlink" title="新生代晋升"></a>新生代晋升</h2><ol>
+<li><p>新生代到老年代晋升年龄，最大为15岁，即进行minor GC15次仍然存在的对象，会晋升到老年代。</p>
+<ul>
+<li>因为年龄字段保存在对象头的标记字段。占4位最大值为15，所以晋升年龄只能是0 ~ 15</li>
+</ul>
+</li>
+<li><p>但是这个<font color="red">晋升年龄是会变化的</font></p>
+<ul>
+<li>HotSpot遍历所有对象的时候，按照年龄从小到大将对象大小进行累加，当累加到某个年龄时，所累加的大小超过了Survivor区的一半，则取这个年龄和MaxTenuringThreshold的最小值，作为新的晋升年龄阈值</li>
+</ul>
+</li>
+</ol>
+<h2 id="堆空间OOM报错信息"><a href="#堆空间OOM报错信息" class="headerlink" title="堆空间OOM报错信息"></a>堆空间OOM报错信息</h2><ol>
+<li>如果当JVM花太多时间执行垃圾回收且只能回收很少的堆空间时：<ul>
+<li><strong><code>java.lang.OutOfMemoryError: GC Overhead Limit Exceeded</code></strong></li>
+</ul>
+</li>
+<li>如果在创建新的对象，堆内存中的空间不足以存放新创建的对象时：<ul>
+<li><strong><code>java.lang.OutOfMemoryError: Java heap space</code></strong></li>
+</ul>
+</li>
+</ol>
+<h2 id="元空间溢出报错信息"><a href="#元空间溢出报错信息" class="headerlink" title="元空间溢出报错信息"></a>元空间溢出报错信息</h2><ul>
+<li>java.lang.OutOfMemoryError: MetaSpace</li>
+</ul>
+<h2 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h2>
+      </div>
+    </div>
 </div>
+
+<div class="post-category">
+
+    <div id="p-meta-i">
+        
+              
+                <a class="hover-with-bg" href="/dcmblog/categories/JVM/">JVM</a>
+              
+          
+          
+              
+                <a class="hover-with-bg" href="/dcmblog/tags/JVM/"># JVM</a>
+              
+          
+    </div>
 </div>
+
+
+<div class="post-footer">
+  
+
+  <div class="post-copyright">
+    <p style="margin: 5px 0;">文章作者：<a href="/">Bijun Xiang</a></p>
+    <p style="margin: 5px 0;">文章链接：<a href="https://towardsvast.github.io/dcmblog/2026/01/31/JVM/">https://towardsvast.github.io/dcmblog/2026/01/31/JVM/</a></p>
+    <p style="margin: 5px 0;">版权声明：本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处，谢谢。</p>
+  </div>
+  
+</div>
+
 </article>
+
+
         </div>
         
 <footer class="text-center">
@@ -475,6 +588,12 @@ header .header__right .dropdown-menus .dropdown-menu {
 
 <div class="p-btn">
     
+        <a class="toc-btn" id="toc-btn"><i id="i-menu"></i></a>
+    
+    
+      <a class="toc-btn" id="share-btn"><i>
+        <svg t="1670124379155" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2683" width="25" height="25"><path d="M395.946667 234.666667v64H256v469.333333h512V522.666667h64V768a64 64 0 0 1-64 64H256a64 64 0 0 1-64-64V298.666667a64 64 0 0 1 64-64h139.946667z m335.850666-87.914667l150.848 150.826667-158.378666 158.4-45.269334-45.248L748.394667 341.333333H672c-121.685333 0-220.714667 97.024-223.914667 217.941334L448 565.333333v85.333334h-64v-85.333334C384 406.272 512.938667 277.333333 672 277.333333h99.861333l-85.312-85.333333 45.248-45.248z" p-id="2684" fill="var(--first-text-color)"></path></svg>
+      </i></a>
     
     <a href="javascript:window.scrollTo({top:0,behavior:'smooth'});" class="click-btn">
       <i id="i-up"></i>
@@ -509,10 +628,64 @@ header .header__right .dropdown-menus .dropdown-menu {
 </script>
 
 
+<script>
+    var postImg = document.querySelectorAll("article[class=page] img");
+    for (let imgi = 0; imgi < postImg.length; imgi++) {
+        postImg[imgi].onclick = () => {
+            let zoomImg = document.createElement("div");
+            zoomImg.id = "zoomImg";
+            zoomImg.innerHTML = `<div id="zoom-picture"></div>
+    <div class="poptrox-overlay"
+        style="position: fixed; left: 0px; top: 0px; z-index: 20000; width: 100%; height: 100%; text-align: center; cursor: zoom-out; opacity: 1;">
+        <div style="display:inline-block;height:100%;vertical-align:middle;"></div>
+        <div
+            style="position:absolute;left:0;top:0;width:100%;height:100%;background:#000000;opacity:0;filter:alpha(opacity=0);">
+        </div>
+        <div class="poptrox-popup"
+            style="display: inline-block; vertical-align: middle; position: relative; z-index: 1; cursor: zoom-out; min-width: 10px; min-height: 10px; width: auto; height: auto;">
+            <div class="loader" style="display: none;"></div>
+            <div class="pic" style="text-indent: 0px;"><img
+                    src="${ postImg[imgi].srcset || postImg[imgi].src }" alt="Loading..."
+                    style="vertical-align: bottom; max-width: 85vw; max-height: 85vh;"></div>
+        </div>
+    </div>`;
+            document.body.appendChild(zoomImg);
+                document.querySelector("#zoomImg").onclick = () => {
+                    document.querySelector("#zoomImg").remove();
+                }
+        }
+    }
+    
+</script>
 
 
 
 
+    <script>
+        query("#toc-btn")[0].onclick = () => {
+            if (query(".post-toc")[0].innerHTML) {
+                toggleClass(".post-toc", "display-inline");
+            }
+        }
+
+        if (!query(".post-toc")[0].innerHTML) {
+            addClass("#toc-btn","display-none");
+        }
+    </script>
+
+
+
+    <script>
+        query("#share-btn")[0].onclick = async () => {
+            let url = `${location.protocol}//${location.hostname}${location.port ? ":"+location.port:location.port}${location.pathname}#read=${sessionStorage.getItem(location.pathname+"_read_y") || ""}`;
+            try {
+                await navigator.clipboard.writeText(url);
+                prompt_core("分享链接已经复制至剪贴板", 4800, true);
+            } catch(e) {
+                prompt_core("分享链接复制失败，请手动复制<br/>"+url, 4800, false);
+            }
+        }
+    </script>
 
 
 
@@ -528,6 +701,45 @@ header .header__right .dropdown-menus .dropdown-menu {
     </script>
 
 
+
+    <script>
+        const getScrollPosition = (el = window) => ({
+            x: el.pageXOffset !== undefined ? el.pageXOffset : el.scrollLeft,
+            y: el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop
+        });
+        // 此处的 750 是「页面元素的最大宽度」
+        var wx = document.getElementsByClassName("article-m")[0].clientWidth;
+        var wy = document.getElementsByClassName("article-m")[0].clientHeight;
+        function windowScroll() {
+            // 反复修改 确保页面尺寸不改变
+            wx = document.getElementsByClassName("article-m")[0].clientWidth;
+            wy = document.getElementsByClassName("article-m")[0].clientHeight;
+            let y = Math.round(getScrollPosition().y);
+            // console.log(y);
+            // 组合字符串，同时记录页面坐标，页面宽度和高度
+            let p = `${y}:${wx}:${wy}`;
+            // 写入到 sessionStorage 中
+            sessionStorage.setItem(location.pathname + "_read_y", p);
+        }
+        // URL 中是否包含传递的坐标信息
+        setTimeout(() => {
+            if (location.hash.split("#read=").length > 1) {
+                prompt_core("已有阅读进度，正在跳转", 4800, true);
+                // 分离字符串
+                let read_y = location.hash.split("#read=")[1];
+                read_y = read_y.split(":");
+                // 组合乘积，顺滑移动至坐标
+                window.scrollTo({top: Math.round(Number(read_y[0]) * Number(read_y[1] * Number(read_y[2] / wx / wy))), behavior: "smooth"});
+            } else {
+                // 从 sessionStorage 中获取
+                let read_y = sessionStorage.getItem(location.pathname + "_read_y") || "0:0:0";
+                read_y = read_y.split(":");
+                if (read_y[0] != "0") prompt_core("已有阅读进度，正在跳转", 4800, true);
+                window.scrollTo({top: Math.round(Number(read_y[0]) * Number(read_y[1] * Number(read_y[2] / wx / wy))), behavior: "smooth"});
+            }
+        }, 500);
+        window.onscroll = windowScroll;
+    </script>
 
 
 
