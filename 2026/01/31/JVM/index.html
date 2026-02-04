@@ -468,7 +468,7 @@ header .header__right .dropdown-menus .dropdown-menu {
       
       <span class="post-meta">
         <span class="p-dot"></span>
-        共 541 字
+        共 593 字
       </span>
     
     
@@ -477,7 +477,7 @@ header .header__right .dropdown-menus .dropdown-menu {
         <span class="p-dot"></span>
         
         预计 
-        2
+        3
          分钟
       </span>
     
@@ -496,7 +496,7 @@ header .header__right .dropdown-menus .dropdown-menu {
 <div class="article-m">
   <div class="post-toc">
     
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA"><span class="toc-number">1.</span> <span class="toc-text">运行时数据区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E7%9A%84%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text">栈的动态链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E6%B7%B1%E5%BA%A6%E6%89%A9%E5%B1%95"><span class="toc-number">3.</span> <span class="toc-text">栈深度扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E7%94%9F%E4%BB%A3%E6%99%8B%E5%8D%87"><span class="toc-number">4.</span> <span class="toc-text">新生代晋升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E7%A9%BA%E9%97%B4OOM%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">堆空间OOM报错信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%A9%BA%E9%97%B4%E6%BA%A2%E5%87%BA%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF"><span class="toc-number">6.</span> <span class="toc-text">元空间溢出报错信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">7.</span> <span class="toc-text">对象创建过程</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA"><span class="toc-number">1.</span> <span class="toc-text">运行时数据区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E7%9A%84%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text">栈的动态链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E6%B7%B1%E5%BA%A6%E6%89%A9%E5%B1%95"><span class="toc-number">3.</span> <span class="toc-text">栈深度扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E7%94%9F%E4%BB%A3%E6%99%8B%E5%8D%87"><span class="toc-number">4.</span> <span class="toc-text">新生代晋升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E7%A9%BA%E9%97%B4OOM%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">堆空间OOM报错信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%A9%BA%E9%97%B4%E6%BA%A2%E5%87%BA%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF"><span class="toc-number">6.</span> <span class="toc-text">元空间溢出报错信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">7.</span> <span class="toc-text">对象创建过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80"><span class="toc-number">8.</span> <span class="toc-text">对象内存布局</span></a></li></ol>
     
   </div>
     <div id="article">
@@ -535,7 +535,19 @@ header .header__right .dropdown-menus .dropdown-menu {
 <h2 id="元空间溢出报错信息"><a href="#元空间溢出报错信息" class="headerlink" title="元空间溢出报错信息"></a>元空间溢出报错信息</h2><ul>
 <li>java.lang.OutOfMemoryError: MetaSpace</li>
 </ul>
-<h2 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h2>
+<h2 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h2><p><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260201170854724.png" alt="image-20260201170854724"></p>
+<ol>
+<li>类加载检查</li>
+<li>内存分配</li>
+<li>初始化零值</li>
+<li>设置对象头</li>
+<li>调用init方法，设置字段值</li>
+</ol>
+<h2 id="对象内存布局"><a href="#对象内存布局" class="headerlink" title="对象内存布局"></a>对象内存布局</h2><p><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260201172237126.png" alt="image-20260201172237126"></p>
+<ul>
+<li>内存布局包括对象头、实例数据、对齐填充</li>
+</ul>
+
       </div>
     </div>
 </div>
