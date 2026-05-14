@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="/dcmblog/null">
     <link rel="icon" type="image/png" href="/dcmblog/null">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-    <title>动态代理 - HaoMiao</title>
+    <title>SpringBootApplication - HaoMiao</title>
     
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     
@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="Bijun Xiang">
     <meta name="keywords" content="">
-    <meta property="og:title" content="动态代理"/>
+    <meta property="og:title" content="SpringBootApplication"/>
     <style>
 
 
@@ -450,7 +450,7 @@ header .header__right .dropdown-menus .dropdown-menu {
 <article class="page">
 <div id="post-meta-m">
     <div class="post-meta" id="post-meta">
-  <h3>动态代理</h3>
+  <h3>SpringBootApplication</h3>
     
       <span class="post-meta-label">
         Bijun Xiang
@@ -459,8 +459,8 @@ header .header__right .dropdown-menus .dropdown-menu {
     
       <span class="post-meta-label">
         <span class="p-dot"></span>
-        <time datetime="2025-01-19 22:04" pubdate>
-          2025-01-19
+        <time datetime="2025-01-20 22:19" pubdate>
+          2025-01-20
         </time>
       </span>
     
@@ -468,7 +468,7 @@ header .header__right .dropdown-menus .dropdown-menu {
       
       <span class="post-meta">
         <span class="p-dot"></span>
-        共 758 字
+        共 880 字
       </span>
     
     
@@ -477,7 +477,7 @@ header .header__right .dropdown-menus .dropdown-menu {
         <span class="p-dot"></span>
         
         预计 
-        5
+        6
          分钟
       </span>
     
@@ -496,90 +496,79 @@ header .header__right .dropdown-menus .dropdown-menu {
 <div class="article-m">
   <div class="post-toc">
     
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">动态代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cglib%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">cglib动态代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jdk%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">jdk动态代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cglib%E5%92%8Cjdk%E5%8C%BA%E5%88%AB"><span class="toc-number">1.3.</span> <span class="toc-text">cglib和jdk区别</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBootApplication"><span class="toc-number">1.</span> <span class="toc-text">@SpringBootApplication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AutoConfigurationImportSelector"><span class="toc-number">2.</span> <span class="toc-text">AutoConfigurationImportSelector</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%85%A5%E5%8F%A3%E6%96%B9%E6%B3%95%EF%BC%9AselectImports"><span class="toc-number">2.1.</span> <span class="toc-text">核心入口方法：selectImports</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E6%96%B9%E6%B3%95%EF%BC%9AgetAutoConfigurationEntry"><span class="toc-number">2.2.</span> <span class="toc-text">关键方法：getAutoConfigurationEntry</span></a></li></ol></li></ol>
     
   </div>
     <div id="article">
       <div id="post-content" class="markdown-body textretty">
-        <h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><blockquote>
+        <h2 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="@SpringBootApplication"></a>@SpringBootApplication</h2><p>@SpringBootApplication注解由@SpringBootConfiguration、@EnabaleAutoConfiguration、@ComponentScan注解组成</p>
+<blockquote>
+<p>有一些属性需要解释一下</p>
+<p>exclude：禁用不需要自动装配的类</p>
+<p>scanBasePackages：主类不在组件根包时，显示指定base的扫描包路径	</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260514215106550.png" alt="image-20260514215106550"></p>
 <ul>
-<li>Spring动态代理主要是通过cglib和jdk的动态代理实现.</li>
-<li>Aspectj是一个单独的AOP框架，在编译或运行时生成代理类，可以实现前置增强、环绕增强、后置增强等功能。平时开发可以引入Aspetcj依赖实现一系列代理操作</li>
-</ul>
-</blockquote>
-<h3 id="cglib动态代理"><a href="#cglib动态代理" class="headerlink" title="cglib动态代理"></a>cglib动态代理</h3><blockquote>
-<p>注意：jdk8以上版本对反射进行了限制，需要手动打开。VM参数添加：–add-opens java.base&#x2F;java.lang&#x3D;ALL-UNNAMED</p>
-<p><strong>实现原理：</strong></p>
-<ol>
-<li><p>创建一个被代理类</p>
+<li><p>@SpringBootConfiguration<br>本质是Configuration的变体，标记当前类为配置类，允许通过@Bean定义组件</p>
 </li>
-<li><p>新建一个Interceptor实现MethodInterCeptor，重写内部的intercept方法</p>
+<li><p>@EnableAutoConfiguration</p>
+<p><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260514215154291.png" alt="image-20260514215154291"><br>使用@Import注解引入了<code>AutoConfigurationImportSelector.class</code></p>
 </li>
-<li><p>使用Enhancer获取代理对象</p>
-</li>
-</ol>
-</blockquote>
-<ol>
-<li>创建被代理类：</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.haomiao.proxy.dynamic.cglib;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SmsService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendMessage</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;send message success&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>实现Interceptor</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.haomiao.proxy.dynamic.cglib;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodInterceptor;</span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodProxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DebugInterceptor</span> <span class="keyword">implements</span> <span class="title class_">MethodInterceptor</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">intercept</span><span class="params">(Object o, Method method, Object[] objects, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;proxy start...&quot;</span>);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">object</span> <span class="operator">=</span> methodProxy.invokeSuper(o, objects);</span><br><span class="line">        System.out.println(<span class="string">&quot;proxy end...&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> object;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>获取代理对象</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.haomiao.proxy.dynamic.cglib;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.Enhancer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CglibFactory</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title function_">getProxy</span><span class="params">(Class&lt;?&gt; clazz)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建动态代理增强类</span></span><br><span class="line">        <span class="type">Enhancer</span> <span class="variable">enhancer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Enhancer</span>();</span><br><span class="line">        enhancer.setClassLoader(clazz.getClassLoader());</span><br><span class="line">        enhancer.setSuperclass(clazz);</span><br><span class="line">        enhancer.setCallback(<span class="keyword">new</span> <span class="title class_">DebugInterceptor</span>());</span><br><span class="line">        <span class="keyword">return</span> enhancer.create();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>测试</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.haomiao.proxy.dynamic.cglib;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CglibTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">SmsService</span> <span class="variable">proxy</span> <span class="operator">=</span> (SmsService) CglibFactory.getProxy(SmsService.class);</span><br><span class="line">        proxy.sendMessage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="jdk动态代理"><a href="#jdk动态代理" class="headerlink" title="jdk动态代理"></a>jdk动态代理</h3><blockquote>
-<p><strong>主要流程：</strong></p>
-<ol>
-<li>创建被代理的接口，实现被代理接口</li>
-<li>创建一个代理类实现InvocationHandler ，重写invoke方法</li>
-<li>使用Proxy.newProxyInstance获取代理对象</li>
-</ol>
-</blockquote>
-<ol>
-<li>创建被代理的接口</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.haomiao.proxy.dynamic.jdk;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">SmsService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sendMessage</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>实现被代理的接口</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.haomiao.proxy.dynamic.jdk;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SmsServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">SmsService</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendMessage</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;send message&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>实现InvocationHandler</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.haomiao.proxy.dynamic.jdk;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DebugInvocationHandler</span> <span class="keyword">implements</span> <span class="title class_">InvocationHandler</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object target;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">DebugInvocationHandler</span><span class="params">(Object target)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.target = target;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;proxy start...&quot;</span>);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">invoke</span> <span class="operator">=</span> method.invoke(target, args);</span><br><span class="line">        System.out.println(<span class="string">&quot;proxy end...&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> invoke;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>通过Proxy获取代理对象</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.haomiao.proxy.dynamic.jdk;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JdkProxyFactory</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title function_">getProxy</span><span class="params">(Object target)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Proxy.newProxyInstance(target.getClass().getClassLoader(),</span><br><span class="line">                target.getClass().getInterfaces(),</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">DebugInvocationHandler</span>(target));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>测试</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.haomiao.proxy.dynamic.jdk;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JdkProxyTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">SmsService</span> <span class="variable">proxy</span> <span class="operator">=</span> (SmsService) JdkProxyFactory.getProxy(<span class="keyword">new</span> <span class="title class_">SmsServiceImpl</span>());</span><br><span class="line">        proxy.sendMessage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="cglib和jdk区别"><a href="#cglib和jdk区别" class="headerlink" title="cglib和jdk区别"></a>cglib和jdk区别</h3><ul>
-<li><p>JDK 动态代理是官方的，它要求被代理的类必须实现接口。它的原理是动态生成一个接口的实现类来作为代理。</p>
-</li>
-<li><p>CGLIB 是第三方的，它不需要接口。它的原理是动态生成一个被代理类的子类来作为代理。但也正因为是继承，所以它不能代理 <code>final</code> 的类，被代理的方法也不能是 <code>final</code> 或 <code>private</code> 。</p>
-</li>
-<li><p>就二者的效率来说，大部分情况都是 JDK 动态代理更优秀，随着 JDK 版本的升级，这个优势更加明显。</p>
+<li><p>@ComponentScan<br>自动扫描当前类所在的包及其子包中的组件（使用@Controller、@Service、@Component等），并注册为Bean，注入到Spring容器中</p>
 </li>
 </ul>
+<h2 id="AutoConfigurationImportSelector"><a href="#AutoConfigurationImportSelector" class="headerlink" title="AutoConfigurationImportSelector"></a>AutoConfigurationImportSelector</h2><blockquote>
+<p>@EnableAutoConfiguration注解中使用import引入了AutoConfigurationImportSelector</p>
+</blockquote>
+<h3 id="核心入口方法：selectImports"><a href="#核心入口方法：selectImports" class="headerlink" title="核心入口方法：selectImports"></a>核心入口方法：selectImports</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> String[] selectImports(AnnotationMetadata annotationMetadata) &#123;</span><br><span class="line">	<span class="keyword">if</span> (!isEnabled(annotationMetadata)) &#123;</span><br><span class="line">		<span class="keyword">return</span> NO_IMPORTS;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">AutoConfigurationEntry</span> <span class="variable">autoConfigurationEntry</span> <span class="operator">=</span> getAutoConfigurationEntry(annotationMetadata);</span><br><span class="line">	<span class="keyword">return</span> StringUtils.toStringArray(autoConfigurationEntry.getConfigurations());</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>判断是否开启自动配置</li>
+<li>加载所有自动配置类</li>
+<li>返回要自动配置的全类名数组</li>
+</ol>
+<h3 id="关键方法：getAutoConfigurationEntry"><a href="#关键方法：getAutoConfigurationEntry" class="headerlink" title="关键方法：getAutoConfigurationEntry"></a>关键方法：getAutoConfigurationEntry</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> AutoConfigurationEntry <span class="title function_">getAutoConfigurationEntry</span><span class="params">(AnnotationMetadata annotationMetadata)</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 获取所有候选自动配置类</span></span><br><span class="line">    List&lt;String&gt; configurations = getCandidateConfigurations(annotationMetadata, attributes);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. 去重</span></span><br><span class="line">    configurations = removeDuplicates(configurations);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 3. 拿到要排除的配置类（exclude）</span></span><br><span class="line">    Set&lt;String&gt; exclusions = getExclusions(annotationMetadata, attributes);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 4. 校验排除类</span></span><br><span class="line">    checkExcludedClasses(configurations, exclusions);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 5. 移除被排除的</span></span><br><span class="line">    configurations.removeAll(exclusions);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 6. 过滤（条件注解过滤 @Conditional）</span></span><br><span class="line">    configurations = getConfigurationClassFilter().filter(configurations);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 7. 触发自动配置导入事件</span></span><br><span class="line">    fireAutoConfigurationImportEvents(configurations, exclusions);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">AutoConfigurationEntry</span>(configurations, exclusions);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>获取所有候选自动配置类<br>默认从jar包的META-INF&#x2F;spring&#x2F;org.springframework.boot.autoconfigure.AutoConfiguration.imports中获取需要的自动装配类<br><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260514230220033.png" alt="image-20260514230220033"></p>
+</li>
+<li><p>去重<br>将第一步得到的list转换为LinkedHashSet,再转换回list<br><img src="https://raw.githubusercontent.com/towardsvast/img/main/typora_img/image-20260514230326939.png" alt="image-20260514230326939"></p>
+</li>
+<li><p>拿到要排除的配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">PROPERTY_NAME_AUTOCONFIGURE_EXCLUDE</span> <span class="operator">=</span> <span class="string">&quot;spring.autoconfigure.exclude&quot;</span>;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">protected</span> Set&lt;String&gt; <span class="title function_">getExclusions</span><span class="params">(AnnotationMetadata metadata, AnnotationAttributes attributes)</span> &#123;</span><br><span class="line">	Set&lt;String&gt; excluded = <span class="keyword">new</span> <span class="title class_">LinkedHashSet</span>&lt;&gt;();</span><br><span class="line">	excluded.addAll(asList(attributes, <span class="string">&quot;exclude&quot;</span>));</span><br><span class="line">	excluded.addAll(asList(attributes, <span class="string">&quot;excludeName&quot;</span>));</span><br><span class="line">	excluded.addAll(getExcludeAutoConfigurationsProperty());</span><br><span class="line">	<span class="keyword">return</span> excluded;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">protected</span> List&lt;String&gt; <span class="title function_">getExcludeAutoConfigurationsProperty</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">Environment</span> <span class="variable">environment</span> <span class="operator">=</span> getEnvironment();</span><br><span class="line">	<span class="keyword">if</span> (environment == <span class="literal">null</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (environment <span class="keyword">instanceof</span> ConfigurableEnvironment) &#123;</span><br><span class="line">		<span class="type">Binder</span> <span class="variable">binder</span> <span class="operator">=</span> Binder.get(environment);</span><br><span class="line">		<span class="keyword">return</span> binder.bind(PROPERTY_NAME_AUTOCONFIGURE_EXCLUDE, String[].class)</span><br><span class="line">			.map(Arrays::asList)</span><br><span class="line">			.orElse(Collections.emptyList());</span><br><span class="line">	&#125;</span><br><span class="line">	String[] excludes = environment.getProperty(PROPERTY_NAME_AUTOCONFIGURE_EXCLUDE, String[].class);</span><br><span class="line">	<span class="keyword">return</span> (excludes != <span class="literal">null</span>) ? Arrays.asList(excludes) : Collections.emptyList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>getExclusions 从3个地方排除配置类：</p>
+<ul>
+<li>①exclude指定的排除类.class </li>
+<li>②excludeName指定的全路径类名 </li>
+<li>③根据getExcludeAutoConfigurationsProperty获取application.yaml配置的spring.autoconfigure.exclude排除类</li>
+</ul>
+</li>
+<li><p>校验需要排除的配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">checkExcludedClasses</span><span class="params">(List&lt;String&gt; configurations, Set&lt;String&gt; exclusions)</span> &#123;</span><br><span class="line">	List&lt;String&gt; invalidExcludes = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(exclusions.size());</span><br><span class="line">	<span class="keyword">for</span> (String exclusion : exclusions) &#123;</span><br><span class="line">           <span class="comment">// 如果类不存在 或者 这个类根本不是配置类，则加入校验失败队列</span></span><br><span class="line">		<span class="keyword">if</span> (ClassUtils.isPresent(exclusion, getClass().getClassLoader()) &amp;&amp; !configurations.contains(exclusion)) &#123;</span><br><span class="line">			invalidExcludes.add(exclusion);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">       <span class="comment">// 校验失败队列非空，抛出报错</span></span><br><span class="line">	<span class="keyword">if</span> (!invalidExcludes.isEmpty()) &#123;</span><br><span class="line">		handleInvalidExcludes(invalidExcludes);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">handleInvalidExcludes</span><span class="params">(List&lt;String&gt; invalidExcludes)</span> &#123;</span><br><span class="line">	<span class="type">StringBuilder</span> <span class="variable">message</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">	<span class="keyword">for</span> (String exclude : invalidExcludes) &#123;</span><br><span class="line">		message.append(<span class="string">&quot;\t- &quot;</span>).append(exclude).append(String.format(<span class="string">&quot;%n&quot;</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(String.format(</span><br><span class="line">			<span class="string">&quot;The following classes could not be excluded because they are not auto-configuration classes:%n%s&quot;</span>,</span><br><span class="line">			message));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>需要校验排除的类必须存在</li>
+<li>需要校验排除的类 必须是配置类</li>
+<li><code>为什么要校验？</code>用户排除类后肯定想配置类不注入，如果排除类写错了，很影响排查问题</li>
+</ul>
+</li>
+<li><p>移除被排除的类</p>
+</li>
+<li><p>过滤</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> ConfigurationClassFilter <span class="title function_">getConfigurationClassFilter</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="comment">// 只创建一次，保证单例</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">this</span>.configurationClassFilter == <span class="literal">null</span>) &#123;</span><br><span class="line">           <span class="comment">// 加载过滤器（核心）</span></span><br><span class="line">		List&lt;AutoConfigurationImportFilter&gt; filters = getAutoConfigurationImportFilters();</span><br><span class="line">		<span class="keyword">for</span> (AutoConfigurationImportFilter filter : filters) &#123;</span><br><span class="line">			invokeAwareMethods(filter);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">this</span>.configurationClassFilter = <span class="keyword">new</span> <span class="title class_">ConfigurationClassFilter</span>(<span class="built_in">this</span>.beanClassLoader, filters);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">this</span>.configurationClassFilter;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>getAutoConfigurationImportFilters 去所有jar包中读取：spring.factories里面的内容，key为AutoConfigurationImportFilter，值就是要根据注解排除的配置类</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20260514234345519.png" alt="image-20260514234345519"></p>
+</li>
+<li><p>触发自动配置导入事件</p>
+<ul>
+<li>记录<strong>哪些自动配置被导入</strong></li>
+<li>记录<strong>哪些被排除</strong></li>
+<li>最后输出控制台报告（DEBUG 模式可见）</li>
+</ul>
+</li>
+</ol>
 
       </div>
     </div>
@@ -590,18 +579,12 @@ header .header__right .dropdown-menus .dropdown-menu {
     <div id="p-meta-i">
         
               
-                <a class="hover-with-bg" href="/dcmblog/categories/design-pattern/">design-pattern</a>
+                <a class="hover-with-bg" href="/dcmblog/categories/spring/">spring</a>
               
           
           
               
-                <a class="hover-with-bg" href="/dcmblog/tags/cglibProxy/"># cglibProxy</a>
-              
-                <a class="hover-with-bg" href="/dcmblog/tags/jdkProxy/"># jdkProxy</a>
-              
-                <a class="hover-with-bg" href="/dcmblog/tags/aspectJ/"># aspectJ</a>
-              
-                <a class="hover-with-bg" href="/dcmblog/tags/design-pattern/"># design-pattern</a>
+                <a class="hover-with-bg" href="/dcmblog/tags/spring/"># spring</a>
               
           
     </div>
@@ -613,7 +596,7 @@ header .header__right .dropdown-menus .dropdown-menu {
 
   <div class="post-copyright">
     <p style="margin: 5px 0;">文章作者：<a href="/">Bijun Xiang</a></p>
-    <p style="margin: 5px 0;">文章链接：<a href="https://towardsvast.github.io/dcmblog/2025/01/19/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">https://towardsvast.github.io/dcmblog/2025/01/19/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</a></p>
+    <p style="margin: 5px 0;">文章链接：<a href="https://towardsvast.github.io/dcmblog/2025/01/20/SpringBootApplication/">https://towardsvast.github.io/dcmblog/2025/01/20/SpringBootApplication/</a></p>
     <p style="margin: 5px 0;">版权声明：本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处，谢谢。</p>
   </div>
   
